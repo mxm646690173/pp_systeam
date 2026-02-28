@@ -573,8 +573,11 @@ def analysis_worker(global_data, path_config, result_queue):
             
             # 计算颜色状态
             two_week_stock = weekly_estimate * 2
-            # 新增条件：当成品库存加毛坯库存少于今日订单数量时，颜色为red
-            if row["成品库存数量"] + row["毛坯库存数量"] < row["今日订单数量"]:
+            # 新增条件：当成品库存为0且毛坯库存为0时，颜色为棕色
+            if row["成品库存数量"] == 0 and row["毛坯库存数量"] == 0:
+                color_status = "brown"  # 标棕色
+            # 当成品库存加毛坯库存少于今日订单数量时，颜色为red
+            elif row["成品库存数量"] + row["毛坯库存数量"] < row["今日订单数量"]:
                 color_status = "red"  # 标红
             elif actual_stock < two_week_stock:
                 color_status = "red"  # 标红

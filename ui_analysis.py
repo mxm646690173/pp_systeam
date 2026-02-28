@@ -429,13 +429,14 @@ def update_analysis_table(widgets, global_data, filter_type="all"):
                         val = str(val)
                 row_values.append(val)
             all_values.append(row_values)
-            all_tags.append(color_states[idx] if color_states[idx] in ("red", "yellow") else "")
+            all_tags.append(color_states[idx] if color_states[idx] in ("red", "yellow", "brown") else "")
         
         # 性能优化：批量插入所有行（使用更高效的方式）
         # 预配置标签（只做一次）
         if not hasattr(tree_analysis, "_tags_configured"):
             tree_analysis.tag_configure("red", background="#FFCCCC")
             tree_analysis.tag_configure("yellow", background="#FFFFCC")
+            tree_analysis.tag_configure("brown", background="#D2691E")
             tree_analysis._tags_configured = True
         
         # 批量插入数据
