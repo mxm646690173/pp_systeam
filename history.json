@@ -1,0 +1,9 @@
+{
+  "raw_material": "J:/测试数据/涂装产品基础数据（需随时更新).xlsx",
+  "weekly_order": "J:/测试数据/采购订单（1-28晚）.xlsx",
+  "yearly_estimate": "J:/测试数据/26-1-16德盟最新预计量.xlsx",
+  "ordered_file": "J:/测试数据/供应商订单跟踪表.xlsx",
+  "finished_stock": "J:/测试数据/2026.2.10成品库存.xlsx",
+  "raw_stock": "J:/测试数据/2026.2.2毛坯库存.xlsx",
+  "daily_order": "D:\\毛坯采购分析工具\\每日订单自动下载\\20260211_采购订单.xlsx"
+}
