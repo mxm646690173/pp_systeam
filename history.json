@@ -1,9 +1,9 @@
 {
-  "raw_material": "J:/测试数据/涂装产品基础数据（需随时更新).xlsx",
-  "weekly_order": "J:/测试数据/采购订单（1-28晚）.xlsx",
-  "yearly_estimate": "J:/测试数据/26-1-16德盟最新预计量.xlsx",
-  "ordered_file": "J:/测试数据/供应商订单跟踪表.xlsx",
-  "finished_stock": "J:/测试数据/2026.2.10成品库存.xlsx",
-  "raw_stock": "J:/测试数据/2026.2.2毛坯库存.xlsx",
-  "daily_order": "D:\\毛坯采购分析工具\\每日订单自动下载\\20260211_采购订单.xlsx"
+  "raw_material": "C:/Users/DM-scb/Desktop/基础资料/涂装产品基础数据（需随时更新).xlsx",
+  "weekly_order": "C:/Users/DM-scb/Desktop/订单/未处理订单/采购订单（2-26日）.xlsx",
+  "yearly_estimate": "C:/Users/DM-scb/Desktop/年预计量/26-1-16德盟最新预计量.xlsx",
+  "ordered_file": "C:/Users/DM-scb/Desktop/供应商订单跟踪表.xlsx",
+  "finished_stock": "C:/Users/DM-scb/Desktop/成品库存查询/2026.3.1成品库存.xlsx",
+  "raw_stock": "C:/Users/DM-scb/Desktop/毛坯库存查询/2026.3.1毛坯库存.xlsx",
+  "daily_order": "E:\\python程序包\\每日订单自动下载\\20260301_采购订单.xlsx"
 }

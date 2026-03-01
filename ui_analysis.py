@@ -186,13 +186,17 @@ def build_analysis_tab(parent, global_data, path_config):
         # 获取选中行的数据
         values = tree_analysis.item(selected_item[0], "values")
         
-        # 找到毛坯编码的索引（第2列，索引为1）
+        # 找到成品编码和毛坯编码的索引
+        # 成品编码在第1列（索引0），毛坯编码在第2列（索引1）
+        finished_code_index = 0
         blank_code_index = 1
-        if blank_code_index < len(values):
+        
+        if finished_code_index < len(values) and blank_code_index < len(values):
+            finished_code = values[finished_code_index]
             blank_code = values[blank_code_index]
             if blank_code and blank_code != "-":
-                # 打开新窗口显示该毛坯编码的订单记录
-                show_blank_code_orders(blank_code, global_data)
+                # 打开新窗口显示该成品编码和毛坯编码的订单记录
+                show_blank_code_orders(blank_code, global_data, finished_code)
     
     tree_analysis.bind("<Double-Button-1>", on_double_click)
     
@@ -472,9 +476,13 @@ def update_analysis_cards(widgets, global_data):
     widgets["card_need_warning"].config(text=f"需警惕：{warning_count}件")
     widgets["card_normal"].config(text=f"正常：{normal_count}件")
 
-def show_blank_code_orders(blank_code, global_data):
+def show_blank_code_orders(blank_code, global_data, finished_code=None):
     """
     显示指定毛坯编码的订单记录和预计采购分析（新窗口）
+    参数：
+        blank_code: 毛坯编码
+        global_data: 全局数据
+        finished_code: 成品编码（可选，用于精确匹配记录）
     """
     # 创建新窗口
     new_window = tk.Toplevel()
@@ -520,8 +528,13 @@ def show_blank_code_orders(blank_code, global_data):
     if analysis_df is not None and not analysis_df.empty:
         for idx, row in analysis_df.iterrows():
             if '毛坯物料编码' in row and str(row['毛坯物料编码']).strip() == blank_code.strip():
-                analysis_record = row
-                break
+                if finished_code is not None:
+                    if '成品物料编码' in row and str(row['成品物料编码']).strip() == finished_code.strip():
+                        analysis_record = row
+                        break
+                else:
+                    analysis_record = row
+                    break
     
     # 1. 当前日期和周数区域
     date_frame = ttk.LabelFrame(main_frame, text="当前信息", padding=(10, 5))
@@ -629,8 +642,9 @@ def show_blank_code_orders(blank_code, global_data):
     safety_inner_frame = ttk.Frame(safety_frame)
     safety_inner_frame.pack(fill=tk.BOTH, expand=True)
     
-    # 获取成品编码
-    finished_code = "-"
+    # 获取成品编码（优先使用函数参数，其次使用分析记录中的值）
+    if finished_code is None or finished_code == "":
+        finished_code = "-"
     if analysis_record is not None:
         finished_code = str(analysis_record.get("成品物料编码", "-")).strip()
     
